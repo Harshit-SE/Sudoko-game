@@ -8,24 +8,30 @@ class NumberPadKey extends StatelessWidget {
   final int digit;
   final int remainingCount;
   final VoidCallback onTap;
+  final bool isSelected;
+  final bool disabled;
 
   const NumberPadKey({
     super.key,
     required this.digit,
     required this.remainingCount,
     required this.onTap,
+    this.isSelected = false,
+    this.disabled = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isDisabled = remainingCount <= 0;
+    final isDisabled = disabled || remainingCount <= 0;
 
     return GestureDetector(
       onTap: isDisabled ? null : onTap,
       child: AnimatedContainer(
         duration: AppConfig.animationFast,
         decoration: BoxDecoration(
-          color: AppColors.surfaceContainerHighest,
+          color: isSelected
+              ? AppColors.primaryFixedDim
+              : AppColors.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
         ),
         child: Opacity(
@@ -58,11 +64,15 @@ class NumberPadKey extends StatelessWidget {
 class NumberPad extends StatelessWidget {
   final Map<int, int> digitCounts; // Map of digit (1-9) to remaining count
   final void Function(int) onDigitTap;
+  final int? selectedDigit;
+  final bool disabled;
 
   const NumberPad({
     super.key,
     required this.digitCounts,
     required this.onDigitTap,
+    this.selectedDigit,
+    this.disabled = false,
   });
 
   @override
@@ -82,6 +92,8 @@ class NumberPad extends StatelessWidget {
         return NumberPadKey(
           digit: digit,
           remainingCount: digitCounts[digit] ?? 9,
+          isSelected: selectedDigit == digit,
+          disabled: disabled,
           onTap: () => onDigitTap(digit),
         );
       },

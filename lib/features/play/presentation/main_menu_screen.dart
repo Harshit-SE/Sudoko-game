@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -56,7 +57,7 @@ class MainMenuScreen extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: FilledButton.icon(
-                            onPressed: _doNothing,
+                                onPressed: () => context.go('/game'),
                             icon: const Icon(Icons.play_arrow_rounded),
                             label: const Text('Start daily puzzle'),
                           ),
