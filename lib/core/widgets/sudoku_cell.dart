@@ -33,7 +33,6 @@ class SudokuCell extends StatelessWidget {
       case CellHighlightState.error:
         return AppColors.errorContainer;
       case CellHighlightState.none:
-      default:
         return AppColors.surfaceContainerLowest;
     }
   }

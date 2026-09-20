@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/play/presentation/main_menu_screen.dart';
+
 // Global navigator keys for routing hierarchy
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final GlobalKey<NavigatorState> _shellNavigatorPlayKey = GlobalKey<NavigatorState>(debugLabel: 'shellPlay');
@@ -41,9 +43,7 @@ final goRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/',
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text('Main Menu Screen - Phase 3')),
-              ),
+              builder: (context, state) => const MainMenuScreen(),
             ),
           ],
         ),

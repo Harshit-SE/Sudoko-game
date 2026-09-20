@@ -22,7 +22,7 @@ class GlassModal extends StatelessWidget {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
             child: Container(
-              color: AppColors.background.withOpacity(0.4),
+              color: AppColors.background.withValues(alpha: 0.4),
             ),
           ),
         ),
